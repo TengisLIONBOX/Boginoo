@@ -1,0 +1,174 @@
+.logotxt {
+  color: #02b589;
+  font-family: Lobster;
+  font-weight: 400;
+  font-size: 56px;
+  margin-top: 0;
+}
+
+.logogrp {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn1 {
+  font-weight: 700;
+  font-size: 20px;
+  color: #02b589;
+}
+
+.grnbtn {
+  width: 150px;
+  height: 45px;
+  background-color: #02b589;
+  border: 0;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 22px;
+  color: #ffff;
+  cursor: pointer;
+}
+
+.btndad {
+  display: flex;
+  justify-content: end;
+}
+
+.boginosgohinput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeinput {
+  width: 400px;
+  height: 40px;
+  border: 0;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.269) 0px 3px 8px;
+  padding-left: 22px;
+}
+
+input::placeholder {
+  font-weight: 600;
+  font-size: 20px;
+  opacity: 0.2;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.loginbody {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logintxt1 {
+  font-weight: 700;
+  font-size: 32px;
+  color: #02b589;
+}
+
+.logininput {
+  width: 370px;
+  height: 40px;
+  border: 0;
+  border-radius: 50px;
+  box-shadow: #00000037 0px 3px 7px;
+  padding-left: 22px;
+}
+
+.inputgrp {
+  display: flex;
+  flex-direction: column;
+}
+
+.logintxt2 {
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.checkbox {
+  color: #02b589;
+  font-size: 17px;
+  padding-right: 130px;
+}
+
+.loginlinks {
+  display: flex;
+  padding-top: 20px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.grnbtn:hover {
+  background-color: rgb(1, 157, 118);
+}
+
+.whitebtn {
+  width: 150px;
+  height: 45px;
+  background-color: #ffffff00;
+  border: 2px solid rgb(234, 234, 234);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.homelink {
+  padding-top: 30px;
+  margin-left: 38%;
+}
+
+.urlgrp {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  overflow-x: scroll;
+  width: 400px;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.397);
+}
+
+.urlgrp2 {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  width: 400px;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.397);
+}
+.bigurlgrp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.tuuhtxt {
+  padding-left: 32%;
+  font-weight: 700;
+  font-size: 32px;
+  color: #02b589;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -2,22 +2,37 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export function Header() {
-  if (localStorage.getItem("user")) {
-    axios.get("http://localhost:3333/user/").then((response) => {
-      response?.data?.map(function (el) {
-        if (localStorage.getItem("user") === el._id) {
-          const emname = el.email;
-          const signin = document.getElementById("nevtreh");
-          const username = document.getElementById("user");
-          document.getElementById("user").innerHTML = emname;
-          signin.style.display = "none";
-          username.style.display = "block";
-        }
-      });
-    });
-  }
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      axios({
+        url: "http://localhost:3333/user/",
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          response?.data?.forEach((el) => {
+            if (localStorage.getItem("user") === el._id) {
+              const emname = el.email;
+              const signin = document.getElementById("nevtreh");
+              const username = document.getElementById("user");
+              document.getElementById("user").innerHTML = emname;
+              signin.style.display = "none";
+              username.style.display = "block";
+            }
+          });
+        })
+        .catch((err) => {
+          console.log(err.message);
+          localStorage.clear();
+        });
+    }
+  });
 
   const expander = () => {
     document.getElementById("users").style.display = "block";

@@ -14,7 +14,16 @@ export function Home() {
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) navigate("/login");
-  }, []);
+  });
+
+  useEffect(() => {
+    try {
+    } catch (err) {
+      if (err.response.data.msg === "Your token is expired!") {
+        localStorage.clear();
+      }
+    }
+  });
 
   const [hide, setHide] = useState(false);
   const [urlValue, setUrlvalue] = useState("");
@@ -37,10 +46,11 @@ export function Home() {
       } catch (err) {
         console.log(err.message);
       }
-      setOrigUrl(urlValue);
-      setHide(true);
     }
+    setOrigUrl(urlValue);
+    setHide(true);
   };
+
   return (
     <div className="App">
       <div className="daddy">

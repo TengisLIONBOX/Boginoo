@@ -23,7 +23,8 @@ export const U = () => {
       bairshil !== "/" ||
       bairshil !== "login" ||
       bairshil !== "/signup" ||
-      bairshil !== "/forgotpass"
+      bairshil !== "/forgotpass" ||
+      bairshil !== "/history"
     ) {
       dataRetriever();
     }

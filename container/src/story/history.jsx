@@ -4,14 +4,13 @@ import { useState, useEffect } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../logo";
-const _ = require("lodash");
 
 export function History() {
   const navigate = useNavigate();
 
   const checkUser = () => {
-    const user = localStorage.getItem("user");
-    if (!user) navigate("/login");
+    const token = localStorage.getItem("token");
+    if (!token) navigate("/login");
   };
 
   useEffect(() => {
@@ -24,17 +23,19 @@ export function History() {
 
   useEffect(() => {
     const dataRetriever = async () => {
-      await axios
-        .get(
-          `http://localhost:3333/users/${localStorage.getItem(
-            "user"
-          )}?page=${page}&limit=${limit}`
-        )
-        .then((response) => {
-          console.log(response);
-          console.log(response.data);
-          setSave(response);
-        });
+      await axios({
+        url: `http://localhost:3333/users/${localStorage.getItem(
+          "user"
+        )}?page=${page}&limit=${limit}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then((response) => {
+        console.log(response);
+        console.log(response.data);
+        setSave(response);
+      });
     };
     dataRetriever();
   }, [page]);

@@ -12,8 +12,12 @@ export const Signup = () => {
 
   const dataRetriever = async () => {
     try {
-      if (emailValue === "") {
+      if (emailValue === "" && passValue === "") {
         document.getElementById("emailid").style.boxShadow =
+          "rgba(255, 0, 0, 0.658) 0px 3px 8px";
+        document.getElementById("passid").style.boxShadow =
+          "rgba(255, 0, 0, 0.658) 0px 3px 8px";
+        document.getElementById("passid2").style.boxShadow =
           "rgba(255, 0, 0, 0.658) 0px 3px 8px";
       } else {
         if (passValue === passValue2) {

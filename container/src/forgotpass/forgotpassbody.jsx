@@ -3,7 +3,7 @@ import axios from "axios";
 import "../App.css";
 import { Logo } from "../logo";
 import emailjs from "@emailjs/browser";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const Forgotpass = () => {
   const [too, setToo] = useState("");
@@ -11,6 +11,7 @@ export const Forgotpass = () => {
   const [emailValue, setEmailValue] = useState("");
   const [id, setId] = useState("");
   const [passValue, setPassValue] = useState("");
+
   const generator = () => {
     const minm = 100000;
     const maxm = 999999;
@@ -46,7 +47,7 @@ export const Forgotpass = () => {
     document.getElementById("resetid").style.boxShadow =
       "rgba(255, 0, 0, 0.658) 0px 3px 8px";
 
-    if (resetValue == too) {
+    if (resetValue === too) {
       document.getElementById("resetid").style.display = "none";
       document.getElementById("updateid").style.display = "block";
     }

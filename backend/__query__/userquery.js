@@ -1,6 +1,5 @@
 const User = require('../databasee/model/userschema');
 const bcrypt = require('bcrypt');
-const { logDOM } = require('@testing-library/react');
 
 exports.userCreate = async (req) => {
     const { email, password } = req.body;

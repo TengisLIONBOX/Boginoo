@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const request = require('supertest');
-const Url = require('../databasee/model/urlschema');
-const User = require('../databasee/model/userschema');
 const app = require('../node');
-
-const { userPostController } = require('../__controllers__/userController');
 
 const data = [
     {
@@ -22,7 +18,8 @@ const data = [
 ];
 
 const setUpEnvironment = async () => {
-    await mongoose.createConnection('mongodb+srv://Tengis:Qweasdzxc2007@cluster0.rqv9oyq.mongodb.net/testing');
+    await mongoose.createConnection('mongodb+srv://Tengis:Qweasdzxc2007@cluster0.rqv9oyq.mongodb.net/test');
+
     console.log('test base connected');
     // await User.deleteMany();
     // data.map(async (el) => {
@@ -34,22 +31,22 @@ beforeAll(async () => {
     await setUpEnvironment();
 });
 
-describe('User test', () => {
+describe('Url test', () => {
     jest.setTimeout(10000);
-    it('New user create test expect to success', async () => {
-        const result = await request(app).post('/user').send({
-            email: 'asdaasd',
-            password: 'svdfdsfgss',
+    it('New url create test expect to success', async () => {
+        const result = await request(app).post('/url').send({
+            userId: '7867867878',
+            origUrl: 'https://www.youtube.com/',
         });
         expect(result.status).toBe(201);
     });
-    it('User login test expect to success', async () => {
-        const result = await request(app).post('/login').send({
-            email: 'asdaas',
-            password: 'svdfdsfgss',
-        });
-        expect(result.status).toBe(201);
-    });
+    // it('User login test expect to success', async () => {
+    //     const result = await request(app).post('/login').send({
+    //         email: 'asdaas',
+    //         password: 'svdfdsfgss',
+    //     });
+    //     expect(result.status).toBe(201);
+    // });
 });
 
 afterAll(async () => {

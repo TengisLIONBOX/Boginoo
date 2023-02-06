@@ -1,6 +1,6 @@
 const User = require('../databasee/model/userschema');
 const bcrypt = require('bcrypt');
-const { logDOM } = require('@testing-library/react');
+const mongoose = require('mongoose');
 
 exports.userCreate = async (req) => {
     const { email, password } = req.body;
@@ -12,8 +12,8 @@ exports.userCreate = async (req) => {
 
 exports.userDelete = async (req) => {
     const { userId } = req.params;
-    const objId = new mongoose.Types.ObjectId(userId);
-    await User.findByIdAndDelete({ _id: objId }, { new: true });
+    const _id = new mongoose.Types.ObjectId(userId);
+    return await User.findByIdAndDelete({ _id }, { new: true });
 };
 
 exports.userUpdate = async (req) => {

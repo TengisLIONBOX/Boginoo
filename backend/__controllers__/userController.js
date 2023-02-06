@@ -1,7 +1,7 @@
 const { userCreate, userDelete, usergetbyid, userUpdate } = require('../__query__/userquery');
 const User = require('../databasee/model/userschema');
-const { TokenGenerator } = require('../__helper__/helper');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
 exports.userPostController = async (req, res) => {
     try {
@@ -16,18 +16,15 @@ exports.userPostController = async (req, res) => {
 
 exports.userDeleteController = async (req, res) => {
     try {
-        const result = await userDelete(req, res);
-        res.status(201).send({ Deleted: result });
+        await userDelete(req);
+        res.status(201).send('Successfully deleted user!');
     } catch (error) {
-        return res.status(400).json({
-            message: error,
-            data: null,
-        });
+        return res.status(400).send('Cannot delete user!');
     }
 };
 
 exports.userGetController = async (req, res) => {
-    const result = await User.find();
+    const result = await User.find({});
     res.status(200).send(result);
 };
 
@@ -35,21 +32,20 @@ exports.userGetControllerById = async (req, res) => {
     const { id } = req.params;
     const objId = new mongoose.Types.ObjectId(id);
     const result = await User.findById({ _id: objId });
-    res.send({ username: result });
+    res.status(201).send({ username: result });
 };
 exports.userUpdateController = async (req, res) => {
     try {
         const result = await userUpdate(req);
-        res.send({ result });
+        res.status(200).send({ result });
     } catch (err) {
-        console.log(err.message);
-        res.send(err.message);
+        res.status(400).send(err.message);
     }
 };
 
 exports.userGetControllerById = async (req, res) => {
     const result = await usergetbyid(req);
-    res.send({ data: result });
+    res.status(201).send({ data: result });
 };
 
 exports.userLogin = async (req, res) => {
@@ -65,7 +61,7 @@ exports.userLogin = async (req, res) => {
         // if (token) res.status(201).send({ user: user, token: token });
         // return [user._id.valueOf(), token];
 
-        return res.status(201).send({ user: user });
+        res.status(201).send('sus');
         // [user._id.valueOf()];
     } else {
         res.status(400).send('Invalid password or email');

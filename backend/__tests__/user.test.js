@@ -1,30 +1,30 @@
 const mongoose = require('mongoose');
 const request = require('supertest');
-const Url = require('../databasee/model/urlschema');
 const User = require('../databasee/model/userschema');
 const app = require('../node');
 
-const { userPostController } = require('../__controllers__/userController');
-
 const data = [
     {
-        email: 'asdasda',
+        email: 'bek',
         password: 'svdfdfgdcd',
     },
     {
-        email: 'asdass',
+        email: 'boldoo',
+        password: 'svdfdsfgss',
+    },
+    {
+        email: 'dulmaa',
         password: 'svdfdfgdcd',
     },
     {
-        email: 'asdasdasdf',
-        password: 'svdfdfgdcd',
+        email: 'bataa',
+        password: '12345678',
     },
 ];
 
 const setUpEnvironment = async () => {
-    await mongoose.createConnection('mongodb+srv://Tengis:Qweasdzxc2007@cluster0.rqv9oyq.mongodb.net/testing');
-    console.log('test base connected');
-    await User.deleteMany();
+    await mongoose.connect('mongodb+srv://Tengis:Qweasdzxc2007@cluster0.rqv9oyq.mongodb.net/tester');
+    console.log('user test connected');
     data.map(async (el) => {
         await User.create(el);
     });
@@ -35,18 +35,37 @@ beforeAll(async () => {
 });
 
 describe('User test', () => {
-    it('New user create test expect to success', async () => {
+    jest.setTimeout(10000);
+    it('User CREATE test expect to success', async () => {
         const result = await request(app).post('/user').send({
-            email: 'asdasdddscdsdas',
-            password: 'svdfdsfgss',
+            email: 'babvhj@gmail.com',
+            password: '12345jkh678',
         });
-        expect(result.status).toBe(201);
+        expect(result.text).toBe('Successfully created new user!');
     });
-    it('User login test expect to success', async () => {
+    it('User LOGIN test expect to success', async () => {
         const result = await request(app).post('/login').send({
-            email: 'asdaas',
-            password: 'svdfdsfgss',
+            email: 'babvhj@gmail.com',
+            password: '12345jkh678',
         });
+        console.log(result.text, 'log');
+        expect(result.text).toBe('sus');
+    });
+    it('User GET test expect to success', async () => {
+        const result = await request(app).get('/user');
+        expect(result.status).toBe(200);
+    });
+    it('User UPDATE test expect to success', async () => {
+        const userId = '63e0d477dd00feeb24fb3119';
+        const result = await request(app).put(`/user/${userId}`).send({
+            email: 'asdsasssas',
+            password: 'svdssfdssfgss',
+        });
+        expect(result.status).toBe(200);
+    });
+    it('User DELETE test expect to success', async () => {
+        const userId = '63e0d477dd00feeb24fb311a';
+        const result = await request(app).delete(`/user/${userId}`);
         expect(result.status).toBe(201);
     });
 });

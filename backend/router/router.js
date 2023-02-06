@@ -18,7 +18,7 @@ const UserRouter = express.Router();
 
 UserRouter.delete('/user/:userId', userDeleteController)
     .post('/user', userPostController)
-    .get('/user', TokenCheckerMiddleware, userGetController)
+    .get('/user', /*TokenCheckerMiddleware,*/ userGetController)
     .get('/user/:id', TokenCheckerMiddleware, userGetControllerById)
     .put('/user/:userId', userUpdateController)
     .post('/login', userLogin)

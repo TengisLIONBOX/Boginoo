@@ -6,14 +6,15 @@ exports.urlPostController = async (req, res) => {
         const result = await urlCreate(req);
         res.status(201).send(result);
     } catch (err) {
-        console.log(err.message);
-        res.send(err.message);
+        return res.status(400).json({
+            message: 'Cannot create new url!',
+        });
     }
 };
 
 exports.urlGetController = async (res) => {
     const result = await Url.find();
-    res.status(200).send(result);
+    res.status(201).send(result);
 };
 
 exports.getIdUrl = async (req, res) => {

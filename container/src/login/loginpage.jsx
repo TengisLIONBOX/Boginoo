@@ -24,26 +24,22 @@ export function Login() {
     const inputid = document.getElementById("emailid");
     const passid = document.getElementById("passid");
     await axios
-      .post("http://localhost:3333/login/", {
+      .post("https://boginoo-chi.vercel.app/login/", {
         email: emailValue,
         password: passValue,
       })
       .then((response) => {
-        console.log("ehhehe");
-        console.log(response?.data);
-        if (
-          response?.data === "Invalid password or email" ||
-          response?.data === " You don't have any user account, please sign up "
-        ) {
+        if (response?.data === "Email or password are incorrect!") {
           inputid.style.boxShadow = "rgba(255, 0, 0, 0.658) 0px 3px 8px";
           passid.style.boxShadow = "rgba(255, 0, 0, 0.658) 0px 3px 8px";
         } else {
-          localStorage.setItem("token", response?.data.token);
-          localStorage.setItem("user", response?.data.user._id);
+          localStorage.setItem("token", response?.data?.token);
+          localStorage.setItem("user", response?.data?.user._id);
           console.log(response?.data);
           window.location.href = "/";
         }
       });
+    console.log("AJILLAJ BN");
     setTokenn(token);
   };
 

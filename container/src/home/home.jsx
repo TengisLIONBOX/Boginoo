@@ -34,7 +34,7 @@ export function Home() {
       try {
         const userId = localStorage.getItem("user");
         await axios
-          .post("http://localhost:3333/url/", {
+          .post("https://boginoo-chi.vercel.app/url/", {
             userId: userId,
             origUrl: urlValue,
           })

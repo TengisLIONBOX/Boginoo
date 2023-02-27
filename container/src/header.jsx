@@ -8,7 +8,7 @@ export function Header() {
   useEffect(() => {
     if (localStorage.getItem("user")) {
       axios({
-        url: "http://localhost:3333/user/",
+        url: "https://boginoo-chi.vercel.app/user/",
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,

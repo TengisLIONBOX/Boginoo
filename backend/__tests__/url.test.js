@@ -31,13 +31,17 @@ beforeAll(async () => {
 });
 
 describe('Url test', () => {
-    jest.setTimeout(8000);
+    jest.setTimeout(10000);
     it('Url CREATE test expect to success', async () => {
         const result = await request(app).post('/url').send({
             userId: '78678687878',
             origUrl: 'https://www.youtube.com/gremix',
         });
         expect(result.status).toBe(201);
+    });
+    it('Url GET test expect to success', async () => {
+        const result = await request(app).get('/url');
+        expect(result.status).toBe(200);
     });
 });
 

@@ -24,7 +24,7 @@ export function History() {
   useEffect(() => {
     const dataRetriever = async () => {
       await axios({
-        url: `http://localhost:3333/users/${localStorage.getItem(
+        url: `https://boginoo-chi.vercel.app/users/${localStorage.getItem(
           "user"
         )}?page=${page}&limit=${limit}`,
         method: "GET",

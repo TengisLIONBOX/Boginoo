@@ -1,6 +1,7 @@
 const { userCreate, userDelete, usergetbyid, userUpdate } = require('../__query__/userquery');
 const User = require('../databasee/model/userschema');
 const bcrypt = require('bcrypt');
+const { TokenGenerator } = require('../__helper__/helper');
 const mongoose = require('mongoose');
 
 exports.userPostController = async (req, res) => {
@@ -49,23 +50,23 @@ exports.userGetControllerById = async (req, res) => {
 };
 
 exports.userLogin = async (req, res) => {
-    const { password, email } = req.body;
-    const user = await User.findOne({ email: email });
+    try {
+        const { password, email } = req.body;
+        const userGet = await User.findOne({ email: email });
+        if (userGet !== null) {
+            const user = await User.findOne({ email: email });
 
-    const hashaa = await bcrypt.compare(password, user.password);
-    if (!user) {
-        return res.status(404).send(" You don't have any user account, please sign up ");
-    }
-    if (hashaa) {
-        // const token = await TokenGenerator({ uid: user._id, expires: 180 });
-        // if (token) res.status(201).send({ user: user, token: token });
-        // return [user._id.valueOf(), token];
-
-        res.status(201).send('sus');
-        // [user._id.valueOf()];
-    } else {
-        res.status(400).send('Invalid password or email');
-        console.log('Invalid password or email');
-        return 'Invalid password or email';
+            const hashaa = await bcrypt.compare(password, user.password);
+            if (hashaa) {
+                const token = await TokenGenerator({ uid: user._id, expires: 240 });
+                if (token) return res.status(201).send({ user: user, token: token });
+            } else {
+                res.status(400).send('Email or password are incorrect!');
+            }
+        } else {
+            res.status(401).send('Email or password are incorrect!');
+        }
+    } catch (err) {
+        res.status(400).send(err.message);
     }
 };

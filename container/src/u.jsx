@@ -10,7 +10,7 @@ export const U = () => {
   useEffect(() => {
     const dataRetriever = async () => {
       await axios
-        .get(`http://localhost:3333/urlid${bairshil}`)
+        .get(`https://boginoo-chi.vercel.app/urlid${bairshil}`)
         .then((response) => {
           console.log(response?.data);
           if (response?.data) {

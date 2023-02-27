@@ -21,10 +21,13 @@ export const Signup = () => {
           "rgba(255, 0, 0, 0.658) 0px 3px 8px";
       } else {
         if (passValue === passValue2) {
-          const result = await axios.post("http://localhost:3333/user/", {
-            email: emailValue,
-            password: passValue,
-          });
+          const result = await axios.post(
+            "https://boginoo-chi.vercel.app/user/",
+            {
+              email: emailValue,
+              password: passValue,
+            }
+          );
           setSignup(result);
           document.getElementById("emailid").value = "";
           document.getElementById("passid").value = "";
@@ -40,7 +43,7 @@ export const Signup = () => {
         }
       }
     } catch (err) {
-      alert(err.response.data.msg);
+      alert(err.response.data.message);
     }
   };
   return (

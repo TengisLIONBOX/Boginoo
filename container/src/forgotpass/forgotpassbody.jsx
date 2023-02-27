@@ -54,7 +54,7 @@ export const Forgotpass = () => {
   };
 
   const dataChanger = async () => {
-    await axios.get("http://localhost:3333/user/").then((response) => {
+    await axios.get("https://boginoo-chi.vercel.app/user/").then((response) => {
       response?.data?.map(function (b) {
         if (b.email === emailValue) {
           setId(b._id);
@@ -62,7 +62,7 @@ export const Forgotpass = () => {
       });
     });
     await axios
-      .put(`http://localhost:3333/user/${id}`, {
+      .put(`https://boginoo-chi.vercel.app/user/${id}`, {
         email: emailValue,
         password: passValue,
       })

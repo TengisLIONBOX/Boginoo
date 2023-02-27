@@ -12,18 +12,17 @@ exports.urlPostController = async (req, res) => {
     }
 };
 
-exports.urlGetController = async (res) => {
-    const result = await Url.find();
-    res.status(201).send(result);
+exports.urlGetController = async (req, res) => {
+    const result = await Url.find({});
+    res.status(200).send(result);
 };
 
 exports.getIdUrl = async (req, res) => {
     try {
         const result = await getidUrlQueary(req);
-        res.status(201).send(result);
+        res.status(200).send(result);
     } catch (err) {
-        console.log(err.message);
-        res.send(err.message);
+        res.status(400).send(err.message);
     }
 };
 

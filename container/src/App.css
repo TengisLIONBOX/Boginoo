@@ -135,6 +135,9 @@ input::placeholder {
 .homelink {
   padding-top: 30px;
   margin-left: 38%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .urlgrp {
@@ -171,4 +174,15 @@ input::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#shortlink {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (max-height: 900px) {
+  .footer {
+    display: none;
+  }
 }

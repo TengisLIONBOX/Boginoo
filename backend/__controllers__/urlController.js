@@ -19,10 +19,11 @@ exports.urlGetController = async (req, res) => {
 
 exports.getIdUrl = async (req, res) => {
     try {
-        const result = await getidUrlQueary(req);
-        res.status(200).send(result);
+        const resu = await getidUrlQueary(req);
+        res.status(201).send(resu);
     } catch (err) {
-        res.status(400).send(err.message);
+        res.status(403).send(err.message);
+        console.log(err.message);
     }
 };
 

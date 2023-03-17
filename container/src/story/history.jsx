@@ -72,7 +72,7 @@ export function History() {
                   <p style={{ color: "grey" }} id="shorturl">
                     Богино холбоос:
                   </p>
-                  http://localhost:3000/{el.shortUrl}
+                  https://boginooshorter.vercel.app/{el.shortUrl}
                 </div>
               </div>
             </div>

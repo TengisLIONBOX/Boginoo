@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import "../App.css";
 import { Logo } from "../logo";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export function Home() {
@@ -75,11 +75,13 @@ export function Home() {
             <p style={{ color: "grey", marginBottom: "0" }}>
               Өгөгдсөн холбоос:
             </p>
-            <p id="origlink" style={{ marginBottom: "20px" }}>
+            <p id="origlink" style={{ marginBottom: "0" }}>
               {origUrl}
             </p>
-            <p style={{ color: "grey", marginBottom: "0" }}>Богино холбоос:</p>
-            <p id="shortlink">http://localhost:3000/{shorty}</p>
+            <p style={{ color: "grey" }}>Богино холбоос:</p>
+            <Link to={urlValue} id="shortlink" target="_blank">
+              https://boginooshorter.vercel.app/{shorty}
+            </Link>
           </div>
         ) : (
           <></>

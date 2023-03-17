@@ -58,7 +58,7 @@ exports.userLogin = async (req, res) => {
 
             const hashaa = await bcrypt.compare(password, user.password);
             if (hashaa) {
-                const token = await TokenGenerator({ uid: user._id, expires: 240 });
+                const token = await TokenGenerator({ uid: user._id, expires: 2400 });
                 if (token) return res.status(201).send({ user: user, token: token });
             } else {
                 res.status(400).send('Email or password are incorrect!');

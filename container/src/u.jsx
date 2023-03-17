@@ -9,15 +9,18 @@ export const U = () => {
   const bairshil = location.pathname;
   useEffect(() => {
     const dataRetriever = async () => {
-      await axios
-        .get(`https://boginoo-chi.vercel.app/urlid${bairshil}`)
-        .then((response) => {
+      await axios({
+        url: `https://boginoo-chi.vercel.app/urlid/${bairshil}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then((response) => {
+        if (response?.data) {
           console.log(response?.data);
-          if (response?.data) {
-            console.log(response?.data);
-            window.location.href = response?.data;
-          }
-        });
+          window.location.href = response?.data;
+        }
+      });
     };
     if (
       bairshil !== "/" ||

@@ -41,9 +41,8 @@ exports.getidUrlQueary = async (req) => {
     const get = await Url.find();
     let heh;
     get.map((el) => {
-        console.log(el);
         if (el.shortUrl == userId) {
-            heh = el.origUrl;
+            heh = el.originalurl;
         }
     });
     return heh;
